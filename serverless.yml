@@ -16,9 +16,10 @@ provider:
 # you can define service wide environment variables here
   environment: 
       TWITCHID: ${opt:twitchId}
-      SERVICEDISCOVERY: ${opt:serviceDiscovery} 
+      SERVICEDISCOVERY: ${opt:serviceDiscovery}
+      STREAMER: ${opt:streamer} 
 
 functions:
   checkClips:
-    handler: index.index
+    handler: handlers/twitchClips.check
 
