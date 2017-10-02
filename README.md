@@ -1,4 +1,5 @@
 # twitch-clip-worker
+[![CircleCI](https://circleci.com/gh/austin1237/twitch-clip-worker.svg?style=svg)](https://circleci.com/gh/austin1237/twitch-clip-worker) <br />
 A lamda function that checks a twitch channels most recent clips
 
 ## Prerequistes
