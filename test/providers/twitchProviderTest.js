@@ -26,8 +26,8 @@ describe("getTrending", () => {
     mockRequest = mockRequestFactory(responseData);
     twitchProvider
       .getTrending(mockRequest, "mockChannelName", "mockTwitchId")
-      .then(clip => {
-        expect(clip.name).to.equal("test clip");
+      .then(clips => {
+        expect(clips[0].name).to.equal("test clip");
         done();
       })
       .catch(done);
