@@ -29,7 +29,7 @@ jobs:
           name: Serverless Deploy
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              node deploy --stage=prod > /dev/null
+              node deploy --stage=prod --twitchId=$TWITCHID --streamer=$STREAMER > /dev/null
             else
-              node deploy --stage=dev > /dev/null
+              node deploy --stage=dev --twitchId=$TWITCHID --streamer=$STREAMER > /dev/null
             fi
