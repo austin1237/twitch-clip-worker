@@ -1,4 +1,5 @@
 # twitch-clip-worker
+[![CircleCI](https://circleci.com/gh/austin1237/twitch-clip-worker.svg?style=svg)](https://circleci.com/gh/austin1237/twitch-clip-worker) <br />
 A lamda function that checks a twitch channels most recent clips
 
 ## Prerequistes
@@ -15,5 +16,5 @@ npm install
 
 ## Deployment
 ```bash
-node deploy --twitchId="YOUR_TWITCH_CLIENT_ID"
+node deploy --twitchId="YOUR_TWITCH_CLIENT_ID" --streamer="TWITCH_STREAMER_NAME"
 ```

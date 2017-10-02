@@ -2,6 +2,7 @@
 const twitchProvider = require("../providers/data/twitchProvider.js");
 const clipProvider = require("../providers/data/clipProvider.js");
 const clipAdapter = require("../adapters/clipAdapter.js");
+const request = require("request-promise");
 
 module.exports.check = (event, context, callback) => {
   let testEnv = process.env.TEST;
@@ -10,12 +11,12 @@ module.exports.check = (event, context, callback) => {
   let streamer = process.env.STREAMER;
   let twitchClip = {};
   let promises = [
-    twitchProvider.getTrending(streamer, twitchId),
+    twitchProvider.getTrending(request, streamer, twitchId),
     clipProvider.getServiceLocation(serviceDiscovery)
   ];
   Promise.all(promises)
     .then(results => {
-      const twitchResponse = results[0].clips[0];
+      const twitchResponse = results[0];
       const newClip = clipAdapter.transformClip(twitchResponse);
       const twitchClip = results[0].clips[0].url;
       const clipServiceLocation = results[1].url;
@@ -30,7 +31,6 @@ module.exports.check = (event, context, callback) => {
         statusCode: 500,
         body: JSON.stringify(err)
       };
-
       callback(null, errResponse);
     });
 };

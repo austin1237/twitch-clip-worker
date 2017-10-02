@@ -1,7 +1,4 @@
-const request = require("request-promise");
-const util = require("util");
-
-let getTrending = (channelName, twitchClientID) => {
+let getTrending = (request, channelName, twitchClientID) => {
   let options = {
     uri: `https://api.twitch.tv/kraken/clips/top?limit=1&channel=${channelName}`,
     headers: {
@@ -10,8 +7,19 @@ let getTrending = (channelName, twitchClientID) => {
     },
     json: true // Automatically parses the JSON string in the response
   };
-  console.log("options are" + util.inspect(options, false, null));
-  return request.get(options);
+  return new Promise((resolve, reject) => {
+    request
+      .get(options)
+      .then(clipData => {
+        if (!clipData.clips || !clipData.clips.length) {
+          return reject(
+            new Error(`No clips for ${channelName} sent from twitch`)
+          );
+        }
+        return resolve(clipData.clips);
+      })
+      .catch(reject);
+  });
 };
 
 module.exports.getTrending = getTrending;
