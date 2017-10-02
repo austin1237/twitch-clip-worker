@@ -16,5 +16,5 @@ npm install
 
 ## Deployment
 ```bash
-node deploy --twitchId="YOUR_TWITCH_CLIENT_ID"
+node deploy --twitchId="YOUR_TWITCH_CLIENT_ID" --streamer="TWITCH_STREAMER_NAME"
 ```
